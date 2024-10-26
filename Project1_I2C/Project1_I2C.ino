@@ -103,12 +103,6 @@ void loop(){
   packFloatToBytes(roll, buffer, 0);     // Pack roll at index 0
   packFloatToBytes(pitch, buffer, 4);    // Pack pitch at index 4
 
-// Print the content of the buffer in binary format for debugging
-  Serial.print("Buffer content (binary): ");
-  for (int i = 0; i < 8; i++) {
-    Serial.print(buffer[i], BIN); // Print each byte in binary
-    Serial.print(" ");
-  }
   Serial.println();
   // packFloatToBytes(xAcc, buffer, 8);     // Pack xAcc at index 8
   // packFloatToBytes(yAcc, buffer, 12);    // Pack yAcc at index 12

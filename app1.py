@@ -57,21 +57,21 @@ glTranslatef(0.0, 0.0, -5) # Moves the entire scene 5 units away from the camera
 
 # Create a custom event that triggers every (10 ms)
 AUTO_ROTATE_EVENT = pg.USEREVENT + 1
-pg.time.set_timer(AUTO_ROTATE_EVENT, 10)  # Set the timer for 1-second intervals
+pg.time.set_timer(AUTO_ROTATE_EVENT, 10)  # Set the timer for 10 millisecond intervals
 
 while True:
     data, addr = sock.recvfrom(BUFFER_SIZE)
     #if len(data) == 8:  # Ensure we've received 8 bytes (two floats for roll and pitch)
     roll, pitch = struct.unpack('>ff', data)  # Unpack two floats. Converts the 8-byte data into two floats corresponding to roll and pitch.
+    
+    ########################### TESTING #############################################
     # Unpack the same data as two unsigned 32-bit integers for binary representation
     # roll_b = struct.unpack('I', data[:4])[0]  # First 4 bytes for roll
     # pitch_b = struct.unpack('I', data[4:])[0]  # Next 4 bytes for pitch
     print(f'Received roll: {roll}, pitch: {pitch}, from: {addr}\n')
     # print(f'Binary roll: {format(roll_b, "032b")}\n')
     # print(f'Binary pitch: {format(pitch_b, "032b")}\n')
-    
-    # Initial rotation
-    glRotatef(1, 1, 0, 0)
+    #################################################################################
     
     for event in pg.event.get():
        if event.type == AUTO_ROTATE_EVENT:
